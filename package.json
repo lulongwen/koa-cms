@@ -1,0 +1,43 @@
+{
+  "name": "koa-cms",
+  "version": "1.0.0",
+  "description": "nodejs koa定制化能力很强，`koa-cms`打造一个好用的异步编程模型 web框架",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "koa2-cms",
+    "koa2"
+  ],
+  "author": "www.lulongwen.com",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^8.0.8",
+    "koa-static": "^5.0.0",
+    "lodash": "^4.17.15",
+    "module-alias": "^2.2.2",
+    "mysql2": "^2.1.0",
+    "npm-check": "^5.9.2",
+    "require-directory": "^2.1.1",
+    "sequelize": "^5.21.5",
+    "validator": "^13.0.0"
+  },
+  "_moduleAliases": {
+    "@": ".",
+    "@app": "app",
+    "@src": "src",
+    "@config": "config",
+    "@models": "app/models",
+    "@middleware": "app/middleware",
+    "@validator": "app/validator/index.js",
+    "@exception": "app/exception/index.js",
+    "@utils": "app/utils/index.js"
+  }
+}
