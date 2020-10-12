@@ -1,15 +1,17 @@
 const {
-  Model, sequelize,
+  Model,
   Sequelize: {
-    STRING, TINYINT, DATEONLY, INTEGER
-  },
-} = require('./db')
+    INTEGER
+  }
+} = require('sequelize')
+
+const sequelize = require('../sequelize')
 
 const {
   NotFoundException
 } = require('@exception')
 
-const Art = require('@models/art')
+const Art = require('@models/classic')
 const Favor = require('@models/favor')
 
 
@@ -17,7 +19,7 @@ const Favor = require('@models/favor')
 class Flow extends Model {
   // 获取最新一期
   static async getLatest (uid) {
-    const flow = await Flow.findOne({
+    const flow = await this.findOne({
       order: [
         ['index', 'DESC'] // desc倒序
       ]

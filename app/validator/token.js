@@ -19,7 +19,6 @@ class TokenValidator extends KoaValidator {
     ]
   }
   
-  // checkType
   validateLoginType (ctx) {
     const {type} = ctx.body
     if (!type) {

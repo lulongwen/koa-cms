@@ -3,8 +3,15 @@ const router = new Router({
   prefix: '/v1/token'
 })
 
-const { createToken } = require('@utils')
+const WxServer = require('@app/service/wechat')
+const Auth = require('@middleware/auth')
 const User = require('@models/user')
+const { createToken } = require('@utils')
+
+const {
+  LOGIN_TYPE: { USER_EMAIL, USER_PHONE, USER_WECHAT }
+} = require('@config/dict.config')
+
 const {
   TokenValidator,
   RequiredTokenValidator
@@ -14,15 +21,8 @@ const {
   ParameterException
 } = require('@exception')
 
-const {
-  LOGIN_TYPE: { USER_EMAIL, USER_PHONE, USER_WECHAT }
-} = require('@config/dict.config')
 
-const WxServer = require('@app/service/wechat')
-const Auth = require('@app/middleware/auth')
-
-
-router.post('/', async (ctx, next) => {
+router.post('/', async ctx => {
   const params = await new TokenValidator().validate(ctx)
   const {
     type, account, secret
@@ -55,11 +55,10 @@ router.post('/verify', async (ctx, next) => {
   const params = await new RequiredTokenValidator().validate(ctx)
   const {token} = params.get('body')
   
-  const result = Auth.verifyToken(token)
-  console.log('verify', token)
-  ctx.body = {
-    token: result
-  }
+  const valid = Auth.verifyToken(token)
+  
+  console.log('verify', valid)
+  ctx.body = { valid }
 })
 
 async function emailServer (account, password) {
@@ -67,7 +66,5 @@ async function emailServer (account, password) {
   // 获取用户，生成令牌
   return createToken(user.id, 8)
 }
-
-
 
 module.exports = router

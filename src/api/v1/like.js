@@ -3,23 +3,23 @@ const router = new Router({
   prefix: '/v1/like'
 })
 
+const Auth = require('@middleware/auth')
+const Favor = require('@models/favor')
+
 const {
-  LikeValidator
+  ClassicValidator
 } = require('@validator')
 
 const {
   SuccessException
 } = require('@exception')
 
-const Auth = require('@middleware/auth')
-const Favor = require('@models/favor')
-
 
 // like
 router.post('/',
   new Auth().BearerToken,
-  async (ctx, next) => {
-    const params = await new LikeValidator().validate(ctx, {
+  async ctx => {
+    const params = await new ClassicValidator().validate(ctx, {
       id: 'art_id' // alias别名验证
     })
     const { art_id, type } = params.get('body')
@@ -32,8 +32,8 @@ router.post('/',
 // unlike
 router.post('/cancel',
   new Auth().BearerToken,
-  async (ctx, next) => {
-    const params = await new LikeValidator().validate(ctx, {
+  async ctx => {
+    const params = await new ClassicValidator().validate(ctx, {
       id: 'art_id'
     })
     const { art_id, type } = params.get('body')

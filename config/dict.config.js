@@ -1,4 +1,4 @@
-// 登录类型，字典配置
+// 登录 类型，字典配置
 const LOGIN_TYPE = {
   USER_WECHAT: 100, // 小程序
   USER_EMAIL: 101, // 邮箱
@@ -7,7 +7,7 @@ const LOGIN_TYPE = {
 }
 
 // classic 类型
-const ART_TYPE = {
+const CLASSIC_TYPE = {
   MOVIE: 100,
   MUSIC: 200,
   SENTENSE: 300,
@@ -16,5 +16,5 @@ const ART_TYPE = {
 
 module.exports = {
   LOGIN_TYPE,
-  ART_TYPE
+  CLASSIC_TYPE
 }

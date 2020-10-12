@@ -6,7 +6,7 @@
 > Website: www.lulongwen.com <br>
 > Github: www.github.com/lulongwen <br>
 
-![卢珑文的 JavaScript 技术栈](javascript.jpg)
+![卢珑文的 JavaScript 技术栈](assets/images/koa-cms.jpg)
 
 
 ## 1 KOA-CMS 技术栈
@@ -15,10 +15,15 @@
 
 1. nodejs + npm + Koa + ES9 + Babel + Typescript + JWT
 
-2. mysql + navicat + RestFul API
+2. mysql + sequelize + redis + navicat + RestFul API
 
 3. 微信开发者工具 + PostMan + nodemon + pm2
 4. 服务器部署
+5. 系统设计，分层思路，接口设计思路
+    - 渐进式开发，在已有功能上开发新功能，不是一步到位
+    - 设计，抽离，分层
+    - 如何设计 server 端架构，API 和路由，数据模型设计
+    - 模板路由和 API设计
 
 ```bash
     npm i axios lodash npm-check require-directory validator sequelize
@@ -46,6 +51,7 @@
 6. RestFul
     - web开发不考虑状态
     - 权限中间件
+    - 设计框架的 hooks
 
 ### 安全
 
@@ -53,6 +59,8 @@
 2. bcryptjs 密码加密
 3. XSS
 4. 真正的权限控制还是服务端，前端只是辅助展示
+
+
 
 
 ## 2 KOA-CMS 目录结构
@@ -68,6 +76,8 @@
 5. 校验器
 6. 令牌
 8. 单元测试
+
+
 
 
 ## 3 为什么开发 KOA-CMS
@@ -92,10 +102,12 @@
     - 商业性的项目才能驱动进步；做出有人用的产品，做出高质量的成品项目
     - 选择小而美的公司，技术的提升，必须有复杂的业务驱动
     - 以解决问题为目标，懂得取舍，卖东西都说自己的好
- 
- 
+    
+    
+
+
 ### eggjs缺点
-     
+
 1. `eggjs` 给出的是一个企业级别的框架，是一个宏大的架子，怎么写代码并没有限定，例如：
     - 没有给出像ThinkPHP、SpringBoot、Flask框架中那些及其有用工具类、校验器、DAO操作；
     - 针对 API优化的异常处理
@@ -105,22 +117,31 @@
 3. `eggjs` 丢失了很多细节，web框架都必备的，比如验证层，验证器，egg是没有的
     - 数据层 DAO，egg框架并没有一个解决方案，还需要自己来完成
     - 比如：安全方面的校验   
+    
+    
 
 
 ### 前端进阶提升
 
 1. 接受即成的事实
+
 2. 我并不认为我的能力和编程水平，学习能力比大厂的人差在哪里
+
 3. 我还能做很多事情，未来有很大的进步空间
+    
     - 能力不断提升，更多的职责，与人沟通做管理，亲自动手和实践
     
 4. 综合素质：交流，管理，认知，学习，任务规划
+
 5. 培养一个兴趣：摄影，写作，画画
+
 6. 前后端分离缺点：削弱了技能的进阶，扼杀了成长，必须要进阶服务端
     - 掌握服务端，统领全局
     - 拒绝原地打转，玩溜一个技术栈，比如 vue
 
 7. 自我解决问题，寻找答案的思考过程
+
+    
 
 
 ### 陈述做过的项目

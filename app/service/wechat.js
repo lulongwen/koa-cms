@@ -1,9 +1,7 @@
 const util = require('util')
 const axios = require('axios')
 
-const {
-  AuthFailedException
-} = require('@exception')
+const User = require('@models/user')
 
 const {
   createToken
@@ -14,10 +12,14 @@ const {
   authCode
 } = require('@config/config')
 
-const User = require('@models/user')
+const {
+  AuthFailedException
+} = require('@exception')
+
 
 // 微信小程序登录
 class WxServer {
+
   static async code2Token (code) {
     // url格式化； %s参数替换
     const url = util.format(loginUrl, appId, appSecret, code)

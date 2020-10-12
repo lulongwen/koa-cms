@@ -4,9 +4,11 @@
  */
 
 const validator = require('validator')
+
 const {
   ParameterException
 } = require('@exception')
+
 const {
   findMembers
 } = require('@utils')
@@ -83,7 +85,7 @@ class KoaValidator {
       }
     }
 
-    if (errorMsgs.length !== 0) {
+    if (errorMsgs.length) {
       throw new ParameterException(errorMsgs)
     }
     ctx.v = this
@@ -91,7 +93,7 @@ class KoaValidator {
   }
   
   async _check(key, alias = {}) {
-    const isCustomFunc = typeof (this[key]) === 'function'
+    const isCustomFunc = typeof this[key] === 'function'
     let result
     if (isCustomFunc) {
       try {

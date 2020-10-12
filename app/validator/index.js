@@ -6,15 +6,20 @@ const {
 } = require('./token')
 
 const {
-  LikeValidator,
-  PositiveIntegerValidator
+  ClassicValidator,
+  PositiveIntegerValidator,
+  AddComment
 } = require('./integer')
+
+const SearchValidator = require('./search')
 
 
 module.exports = {
-  LikeValidator,
+  ClassicValidator,
   PositiveIntegerValidator,
   RegisterValidator,
   TokenValidator,
-  RequiredTokenValidator
+  RequiredTokenValidator,
+  SearchValidator,
+  AddComment
 }

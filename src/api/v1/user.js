@@ -16,7 +16,7 @@ router.post('/register', async (ctx, next) => {
   const user = {password, nickname, email, phone }
   
   await User.create(user)
-  new SuccessException()
+  throw new SuccessException()
 })
 
 module.exports = router

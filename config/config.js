@@ -19,8 +19,11 @@ const authCode = {
   SUPER_ADMIN: 32 // 超级管理员
 }
 
+const host = 'localhost:3000'
+
 module.exports = {
   security,
   wx,
-  authCode
+  authCode,
+  host
 }

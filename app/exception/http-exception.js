@@ -5,18 +5,21 @@
  */
 
 const {
-  parameter,
   success,
   notFound,
   forbidden,
-  authFailed,
-  serverError,
-  likeError,
-  unlikeError
-} = require('./exception-code')
+  authFailed
+} = require('./code-exception')
 
+const error = {
+  code: 1005,
+  message: '服务器在忙',
+  status: 500
+}
+
+// 500 默认
 class HttpException extends Error {
-  constructor(code=serverError.code, message=serverError.message, status=serverError.status) {
+  constructor(code= error.code, message=error.message, status=error.status) {
     super()
     this.status = status
     this.code = code
@@ -24,16 +27,7 @@ class HttpException extends Error {
   }
 }
 
-class ParameterException extends HttpException {
-  constructor(message, code) {
-    super()
-    this.status = parameter.status
-    this.code = code || parameter.code
-    this.message = message || parameter.message
-  }
-}
-
-// 抛错方式返回成功
+// 200 抛错方式返回成功
 class SuccessException extends HttpException {
   constructor(message, code) {
     super()
@@ -73,33 +67,10 @@ class ForbiddenException extends HttpException {
   }
 }
 
-// 点赞
-class LikeException extends HttpException {
-  constructor(message, code) {
-    super()
-    this.status = likeError.status
-    this.code = code || likeError.code
-    this.message = message || likeError.message
-  }
-}
-
-// 取消点赞
-class UnlikeException extends HttpException {
-  constructor(message, code) {
-    super()
-    this.status = unlikeError.status
-    this.code = code || unlikeError.code
-    this.message = message || unlikeError.message
-  }
-}
-
 module.exports = {
   HttpException,
-  ParameterException,
   SuccessException,
   AuthFailedException,
   ForbiddenException,
-  NotFoundException,
-  LikeException,
-  UnlikeException
+  NotFoundException
 }

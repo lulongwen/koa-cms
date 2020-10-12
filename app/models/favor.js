@@ -1,9 +1,12 @@
 const {
-  Model, sequelize, Op,
+  Model,
+  Op,
   Sequelize: { INTEGER }
-} = require('./db')
+} = require('sequelize')
 
-const Art = require('@models/art')
+const sequelize = require('../sequelize')
+
+const Art = require('@models/classic')
 
 const {
   LikeException,
@@ -14,7 +17,7 @@ const {
 // 业务表
 class Favor extends Model {
   
-  // 一个 like要操作 2张表；事务-保持2张表的一致性
+  // 点赞；一个 like要操作 2张表；事务-保持2张表的一致性
   static async like ({ art_id, type, uid }) {
     
     const favor = await this.findOne({
@@ -40,7 +43,7 @@ class Favor extends Model {
     })
   }
   
-  // 不喜欢
+  // 取消点赞
   static async unlike ({ art_id, type, uid }) {
     const favor = await this.findOne({
       where: {
@@ -68,30 +71,54 @@ class Favor extends Model {
     })
   }
   
+  // 点赞状态
   static async likeStatus ({ art_id, type, uid }) {
     const favor = await this.findOne({
       where: {
         art_id, type, uid
       }
     })
-    
     return !!favor
   }
   
-  // 喜欢的列表
-  static async myFavor (uid) {
+  // 点赞的 classic列表
+  static async getFavor (uid) {
     const favor = await this.findAll({
       where: {
         uid,
         type: { [Op.not]: 400 } // Op.not 排除
       }
     })
-    
     if(!favor) {
-      throw new NotFoundException('没有找到喜欢的资料')
+      throw new NotFoundException('没有找到喜欢的期刊')
     }
+
+    // favor记录基本信息, 根据 favor 的 id-type去实体表查询具体信息
+    return await Art.getAll(favor)
+  }
   
-    // favor记录基本信息, 根据 favor-id-type去实体表查询具体信息
+  
+  // 点赞的书籍
+  static async getBookFavor ({ book_id, uid }) {
+    const fav_nums = await Favor.count({
+      where: {
+        art_id: book_id,
+        type: 400
+      }
+    })
+    
+    const favor = await Favor.findOne({
+      where: {
+        art_id: book_id,
+        uid,
+        type: 400
+      }
+    })
+    
+    return {
+      fav_nums,
+      like_status: favor ? 1: 0
+    }
   }
 }
 

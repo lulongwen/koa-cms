@@ -1,10 +1,5 @@
-// httpException 错误信息
-const exceptionCode = {
-  parameter: {
-    code: 1000, // 错误码
-    message: '参数错误', // 错误信息
-    status: 400 // http 状态码
-  },
+// Exception 错误信息
+const codeException = {
   success: {
     code: 0, // 0 成功
     message: 'ok',
@@ -20,11 +15,6 @@ const exceptionCode = {
     message: '禁止访问',
     status: 403
   },
-  serverError: {
-    code: 1005,
-    message: '服务器在忙',
-    status: 500
-  },
   authFailed: {
     code: 1001,
     message: '授权失败',
@@ -39,7 +29,12 @@ const exceptionCode = {
     code: 6002,
     message: '你已取消点赞',
     status: 400
+  },
+  parameter: {
+    code: 1000, // 错误码
+    message: '参数错误', // 错误信息
+    status: 400 // http 状态码
   }
 }
 
-module.exports = exceptionCode
+module.exports = codeException

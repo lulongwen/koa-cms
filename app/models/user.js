@@ -1,8 +1,10 @@
 const bcrypt = require('bcryptjs')
-
 const {
-  Model, Sequelize, sequelize
-} = require('./db')
+  Model,
+  Sequelize
+} = require('sequelize')
+
+const sequelize = require('../sequelize')
 
 const {
   NotFoundException,
@@ -12,6 +14,7 @@ const {
 
 // 定义一个模型
 class User extends Model {
+  
   static async verifyEmailPassword (email, password) {
     const user = await this.findOne({
       where: { email }
@@ -49,13 +52,16 @@ class User extends Model {
 User.init({
   // 主键不能为空，不能重复，主键 数字id，查询高于字符串，不能是随机字符串 UUID
   // 自增 id容易猜到用户编号，接口保护：权限，token
-  // 不设置 id会自动创建 主键为 id属性
+  
+  // 不设置 id会自动创建 id主键，并且自增长
   // id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true}
   
-  nickname: Sequelize.STRING,
+  // allowNull: false 不能为空
+  nickname: Sequelize.STRING(40),
   phone: {
     type: Sequelize.STRING,
-    unique: true
+    unique: true,
+    comment: '手机号'
   },
   email: {
     type: Sequelize.STRING(120),
@@ -64,7 +70,7 @@ User.init({
   password: {
     type: Sequelize.STRING,
     set (val) {
-      // model的属性操作
+      // model的属性操作，密码加盐
       const salt = bcrypt.genSaltSync(10)
       const psd = bcrypt.hashSync(val, salt)
       this.setDataValue('password', psd)
