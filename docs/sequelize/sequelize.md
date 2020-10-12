@@ -1,12 +1,39 @@
-# sequelize ORM
+# sequelize
 
 1. 数据表，用JS中的模型代替，class或对象
 2. 一条用 JS中的一个对象
 3. 多条记录用数组代替
 4. sql语句，用对象方法代替
-
 1. ORM 对象关系映射 Object Relational Mapping
 2. Sequelize 以ORM的方式操作MySQL
+
+
+
+```bash
+npm install sequelize sequelize-cli
+
+npx sequelize-cli init
+
+/models/index.js
+```
+
+
+
+
+
+
+
+## ORM
+
+1. ORM
+
+2. nodejs中集成 sequelize
+
+
+
+
+
+
 
 
 ## 1 sequelize 总结
