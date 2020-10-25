@@ -6,6 +6,10 @@ const {
   dbName, user, password
 } = require('@config/db.config').db
 
+// const config = {
+//   host: 'localhost', dialect: 'mysql'
+// }
+
 const table = require('./table')
 
 // sequelize全局实例；Sequelize 4个参数

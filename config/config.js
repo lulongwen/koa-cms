@@ -1,3 +1,5 @@
+const path = require('path')
+
 // token配置
 const security = {
   secretKey: 'abc123', // 加密 key
@@ -21,9 +23,17 @@ const authCode = {
 
 const host = 'localhost:3000'
 
+// 全局路径
+const viewPath = {
+  view: path.join('/src/views'), // 后台模板路径
+  restful: ''
+}
+
+
 module.exports = {
   security,
   wx,
   authCode,
-  host
+  host,
+  viewPath
 }

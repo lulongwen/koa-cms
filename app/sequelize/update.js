@@ -1,5 +1,4 @@
-const User = {}
-const Blog = {}
+const { User } = require('./model')
 
 ;(async function(){
 

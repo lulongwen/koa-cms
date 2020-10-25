@@ -3,9 +3,9 @@ const {resolve} = require('path')
 
 // webstorm alias 别名配置
 module.exports = {
-  // context: resolve('./'),
+  context: resolve('./'),
   resolve: {
-    extensions: ['.js', '.json', '.ejs'],
+    extensions: ['.js', '.json'],
     alias: {
       "@": resolve('./'),
       "@app": resolve('app'),

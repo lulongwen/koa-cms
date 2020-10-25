@@ -33,7 +33,7 @@ table.define = {
 // table.pool = {
 //   max: 5, // 连接池中最大的链接数量
 //   min: 0,
-//   idle: 10000 // 10s 如果一个链接池 10s内没有被使用，就释放
+//   idle: 10000 // 如果一个链接池 10s内没有被使用，就释放
 // }
 
 module.exports = table

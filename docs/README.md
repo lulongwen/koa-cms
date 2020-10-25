@@ -139,6 +139,15 @@ ssh-keygen -t rsa -C "你的邮箱"
 
 
 
+### API
+
+1. 开闭原则：对修改关闭，对扩展开放
+2. 循环引用 bug，死循环；分层次，上层调用下层
+
+
+
+
+
 ## KOA-CMS 目录结构
 
 ```tree
@@ -185,6 +194,7 @@ src 业务代码
 1. koa-router
 2. koa-views，渲染 ejs模板
 3. koa-static，静态文件服务
+   1. https://github.com/koajs/static
 4. koa-json，解析请求中的 json对象
 5. koa-bodyparser，解析 post请求的数据
 6. koa-logger，格式化日志
@@ -207,136 +217,6 @@ src 业务代码
 
 
 
-## koa2博客
-
-1. 目标
-   1. 开发一个博客CMS，具有博客的基本功能
-   2. 首页，作者主页，博客详情页
-   3. 登录页：登录的统一解决方案
-   4. 管理中心，新建 & 编辑博客，
-   5. 迭代功能：评论，微博功能
-2. 需求分析
-3. server端的技术方案
-   1. 数据存储
-   2. API接口设计
-
-
-
-博客分层架构
-
-<img src="./assets/images/博客架构.jpg" alt="博客架构" style="zoom:50%;" />
-
-
-
-### 博客技术点
-
-1. API，数据存储，登录，日志
-2. 安全，日志记录和日志分析
-3. 中间件
-4. http， stream，session，mysql，redis，nginx，pm2
-5. 服务端开发思想
-
-
-
-
-
-### 博客 API
-
-<img src="./assets/images/blog-api.jpg" alt="blog-api" style="zoom:50%;" />
-
-
-
-
-
-
-
-## koa2微博
-
-1. 框架：koa2，ejs模板，jest单元测试
-2. 存储：mysql， sequelize，连表，多模型
-3. 用户认证：session，jwt，redis缓存
-4. 线上运维：pm2和多进程，nginx和反向代理，日志
-5. 规范：eslint，inspect debug
-
-
-
-### 微博路由
-
-1. 注册 /register
-2. 登录 /login
-3. 首页 /index
-4. 个人主页 /profile/:userId
-5. @页面 /me
-6. 广场 /square
-7. 设置 /setting
-8. 错误页 /error
-9. 404 /*
-
-
-
-### 用户路由
-
-```jsx
-// 用户路由
-登录 /api/user/login
-注册 /api/user/register
-用户名是否存在 /api/user/isExist
-
-// 设置路由
-修改个人信息 /api/user/update/userInfo
-图片上传 /api/upload/images
-修改密码 /api/user/update/password
-退出登录 /api/user/logout
-```
-
-
-
-### 微博路由
-
-```jsx
-// 首页
-创建微博 /api/blog/create
-图片上传 /api/upload/images
-加载更多 /api/blog/loadmore/:index
-
-// 个人主页
-加载更多 /api/profile/loadmore/:userId/:index
-关注 /api/profile/follow
-取消关注 /api/profile/unfollow
-
-// 广场页
-加载更多 /api/square/loadmore/:index
-
-// @页面
-创建微博 /api/blog/create
-图片上传 /api/update/images
-加载更多 /api/me/loadmore/:index
-```
-
-
-
-### ejs组件
-
-1. 全局的 header & footer
-2. 发布博客输入框
-3. 博客列表
-4. 加载更多
-5. 个人信息
-6. 粉丝列表
-7. 关注人列表
-
-
-
-
-
-### mysql
-
-
-
-<img src="./assets/images/weibo-sql.jpg" alt="weibo-sql" style="zoom:50%;" />
-
-
-
 
 
 ## nodejs 最佳实践
@@ -350,36 +230,6 @@ src 业务代码
 7. 渐进式，在已有功能上开发新功能，不要一步到位
    1. 先设计，再开发，开发过程中，反复回顾设计，优化设计方案
    2. 系统设计，分层思路，接口设计思路，数据建模思路
-
-
-
-
-
-### 分层设计
-
-1. 架构设计
-2. 页面（模板，路由），API接口，路由设计
-3. 数据表，数据模型设计
-4. **系统的设计 & 架构能力**，正是你要提升的地方
-
-
-
-微博分层设计图
-
-<img src="./assets/images/微博架构.png" alt="微博架构" style="zoom:50%;" align="left"/>
-
-
-
-### 微博功能开发
-
-1. 用户管理：登录，注册
-2. 用户设置：修改基本信息，修改密码，退出登录
-3. 个人主页：显示个人微博列表和个人信息，@关注列表
-4. 广场页面：粉丝
-5. 微博：创建微博，列表（首页，个人主页，广场页）
-6. @功能：@某人，回复，接收 @到我的消息，@我的
-
-
 
 
 
@@ -448,9 +298,10 @@ src 业务代码
     - 能力不断提升，更多的职责，与人沟通做管理，亲自动手和实践
 4. 综合素质：交流，管理，认知，学习，任务规划
 5. 培养一个兴趣：摄影，写作，画画
-6. 前后端分离缺点：削弱了技能的进阶，扼杀了成长，必须要进阶服务端
+6. 前后端分离缺点：削弱了技能的进阶，扼杀了成长，**必须要进阶服务端**
     - 掌握服务端，统领全局
     - 拒绝原地打转，玩溜一个技术栈，比如 vue
+    - 好的代码利于维护，提高编程效率
 7. 自我解决问题，寻找答案的思考过程
 
 

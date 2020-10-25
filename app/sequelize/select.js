@@ -1,9 +1,10 @@
 const User = {}
 const Blog = {}
-  
-  // 插入数据
+// const { Blog, User } = require('./model.js')
+
+
 ;(async function(){
-  // 查询一条
+  // 查询一条 .findOne
   const user = await User.findOne({
     where: {
       id: 23
@@ -12,20 +13,21 @@ const Blog = {}
   })
   console.log('user', user.dataValues)
   
-  // 查询全部
+  
+  // 查询全部 .findAll
   const list = await Blog.findAll({
     where: {
       userid: 23
     },
-    order: [
+    order: [ // order排序
       ['id', 'desc'],
       ['title', 'desc']
     ]
   })
   console.log('blog', list.map(item => item.dataValues))
   
-  // 分页 查询总数
-  // const pageList = await Blog.findAll({
+  
+  // 分页 .findAll & .findAndCountAll 查询不分页的总数
   const pageList = await Blog.findAndCountAll({
     limit: 2, // 本次查询 2条
     offset: 0, // 跳过多少条
@@ -33,18 +35,16 @@ const Blog = {}
       ['id', 'desc']
     ]
   })
-  // pageList.count 总数
-  // pageList.rows 分页数据
+  // pageList.count 总数 & pageList.rows 分页数据
   console.log('blog', pageList.map(item => item.dataValues))
   
   
-  // 连表查询关键：要提前定义好 表的外键
+  // Blog连表查询，关键：要提前定义好 表的外键
   const blogWithUser = await Blog.findAndCountAll({
-    order: [
+    order: [ // 排序规则
       ['id', 'desc']
     ],
-    // 连表查询的核心
-    include: [
+    include: [ // 连表查询的核心
       {
         model: User,
         attributes: ['username', 'nickname'],
@@ -62,7 +62,8 @@ const Blog = {}
     return blog
   })
   
-  // 连表查询2
+  
+  // User连表查询
   const userWithBlog = await User.findAndCountAll({
     attributes: ['username', 'nickname'],
     order: [

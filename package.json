@@ -2,7 +2,7 @@
   "name": "koa-cms",
   "version": "1.0.0",
   "description": "nodejs koa定制化能力很强，`koa-cms`打造一个好用的异步编程模型 web框架",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "start": "nodemon app.js",
     "dev": "cross-env NODE_ENV=dev",
@@ -17,6 +17,7 @@
   "author": "www.lulongwen.com",
   "license": "ISC",
   "dependencies": {
+    "@koa/router": "^9.4.0",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.0.0-alpha2",

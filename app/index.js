@@ -1,23 +1,29 @@
-const Router = require('koa-router')
+const Router = require('@koa/router')
 const requireDirectory = require('require-directory')
-const path = `${process.cwd()}/src/api`
 
-// 自动加载全部路由
+const path = `${process.cwd()}/restful`
+
+
 class App {
-  static init (app) { // 入口初始化
+  
+  // 入口初始化
+  static init (app) {
     this.app = app
+    
     this.initRouter()
     // this.httpException()
   }
   
+  // 路由的自动注册
   static initRouter () {
-    // 1 自动加载全部路由 cwd 根目录
+    // 自动加载全部路由 cwd 根目录
     requireDirectory(module, path, {
       visit: autoLoad
     })
     
     function autoLoad(route) {
       if (route instanceof Router) {
+        // app.use()
         App.app.use(route.routes())
       }
     }
