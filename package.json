@@ -18,7 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "@koa/router": "^9.4.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.0.0-alpha2",
     "ejs": "^3.1.5",
