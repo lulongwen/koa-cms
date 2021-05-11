@@ -28,7 +28,7 @@
     "koa-nunjucks-2": "^3.0.2",
     "koa-router": "^8.0.8",
     "koa-static": "^5.0.0",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "module-alias": "^2.2.2",
     "mysql2": "^2.2.5",
     "npm-check": "^5.9.2",
