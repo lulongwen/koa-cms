@@ -22,7 +22,7 @@
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.0.0-alpha2",
     "ejs": "^3.1.5",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
     "koa-nunjucks-2": "^3.0.2",
